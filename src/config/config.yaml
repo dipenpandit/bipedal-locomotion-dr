@@ -1,0 +1,27 @@
+# Environment
+env_id: "Walker2d-v5"
+
+# PPO Training Hyperparameters
+total_timesteps: 3000000
+learning_rate: 0.0003
+n_steps: 2048
+batch_size: 64
+
+# Domain Randomization (In-Distribution)
+dr_friction_min: 0.4
+dr_friction_max: 1.6
+dr_mass_min: 0.7
+dr_mass_max: 1.3
+
+# Out-of-Distribution Stress Test (Fixed constants for evaluation)
+severe_friction_min: 0.1
+severe_friction_max: 3.0
+severe_mass_min: 0.5
+severe_mass_max: 2.0
+
+# Evaluation
+num_eval_episodes: 50
+
+# Push Recovery
+push_prob: 0.05
+max_push_force: 50.0
