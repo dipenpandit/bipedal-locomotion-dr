@@ -97,7 +97,6 @@ def plot_training_progress(training_mode: Literal["ppo_dr", "ppo_nominal"],):
     fig.savefig(output_path, dpi=300, bbox_inches="tight")
     logger.info(f"Saved the episode reward and length plot to: {output_path}")
 
-    plt.show()
     plt.close(fig)
 
 
@@ -148,7 +147,6 @@ def plot_eval_matrix(results):
     plt.tight_layout()
     fig.savefig("assets/fig2_robustness_matrix.png", dpi=300)
 
-    plt.show()
     plt.close()
 
 
@@ -180,7 +178,6 @@ def plot_push_sweep(results):
     plt.tight_layout()
     fig.savefig("assets/fig3_push_ablation.png", dpi=300)
 
-    plt.show()
     plt.close()
 
 
