@@ -20,7 +20,7 @@ def train_policy(use_dr):
     model = PPO(
         "MlpPolicy", 
         env, 
-        device="cuda" if torch.cuda.is_available() else "cpu",
+        device="cpu",
         verbose=0,
         learning_rate=config.learning_rate,
         n_steps=config.n_steps, 

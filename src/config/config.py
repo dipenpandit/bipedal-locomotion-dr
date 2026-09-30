@@ -23,7 +23,7 @@ class Config:
     severe_mass_max: float
 
     num_eval_episodes: int
-    push_prob: float
+    push_probs: list[float]
     max_push_force: float
 
     def __post_init__(self):
@@ -46,8 +46,8 @@ class Config:
             )
 
         # Validate Push Parameters
-        if not 0.0 <= self.push_prob <= 1.0:
-            raise ValueError("push_prob must be between 0.0 and 1.0.")
+        if not all(0 <= prob <= 1 for prob in self.push_probs):
+            raise ValueError("All push probabilities must be between 0 and 1.")
 
         if self.max_push_force <= 0:
             raise ValueError("max_push_force must be positive.")

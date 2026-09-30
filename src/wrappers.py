@@ -86,7 +86,6 @@ class DomainRandomizationWrapper(PhysicsWrapper):
         self.set_friction(friction)
         self.set_torso_mass_scale(mass_scale)
         self.current_params = {"friction": friction, "mass_scale": mass_scale}
-        logger.info(f"Domain randomization: friction={friction:.3f}, mass_scale={mass_scale:.3f}")
 
         # Normal reset
         obs, info = super().reset(**kwargs) # invokes .reset() of parent class
@@ -99,7 +98,7 @@ class PushRecoveryWrapper(gym.Wrapper):
     Applies a random horizontal push to the robot's torso at random intervals 
     to test the policy's ability to recover from external disturbances.
     """
-    def __init__(self, env, push_prob=config.push_prob, max_force=config.max_push_force):
+    def __init__(self, env, push_prob, max_force=config.max_push_force):
         super().__init__(env)
         self.model = env.unwrapped.model
         self.data = env.unwrapped.data
@@ -128,7 +127,7 @@ class PushRecoveryWrapper(gym.Wrapper):
         # 2. Execute the environment step
         obs, reward, terminated, truncated, info = self.env.step(action)
             
-        # Optional: Add push info to the info dict for logging
+        # Add push info to the info dict for logging
         info["pushed"] = self.data.xfrc_applied[self.torso_id, 0] != 0.0
             
         return obs, reward, terminated, truncated, info
