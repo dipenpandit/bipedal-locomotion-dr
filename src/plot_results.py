@@ -2,6 +2,8 @@ import json
 from typing import Literal
 import numpy as np
 from pathlib import Path
+import matplotlib 
+matplotlib.use("Agg")  # Use a non-interactive backend for environments without a display
 import matplotlib.pyplot as plt
 from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
 from src.core import logger

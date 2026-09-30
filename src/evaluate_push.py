@@ -10,7 +10,6 @@ from src.core import logger
 
 def evaluate_push(model_path, push_probs):
     """Uses different push probabilities and returns mean survival steps for each."""
-    logger.info(f"Evaluating model {model_path} with push probabilities: {push_probs}")
     model = PPO.load(model_path, device="cpu")
     
     results = {}
@@ -49,7 +48,7 @@ def run_and_save_push_evaluation():
 
     all_results = {}
     
-    print("\n[Nominal Model]")
+    print("[Nominal Model]")
     all_results["nominal_push"] = evaluate_push("models/ppo_nominal", config.push_probs)
     
     print("\n[DR Model]")

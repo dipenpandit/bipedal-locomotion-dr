@@ -8,6 +8,8 @@ from dataclasses import dataclass
 class Config:
     env_id: str
     total_timesteps: int
+    seed: int
+    checkpoint_freq: int
     learning_rate: float
     n_steps: int
     batch_size: int
@@ -33,6 +35,9 @@ class Config:
 
         if self.learning_rate <= 0:
             raise ValueError("learning_rate must be positive.")
+
+        if self.checkpoint_freq <= 0:
+            raise ValueError("checkpoint_freq must be positive.")
 
         # Validate the friction and mass ranges for domain randomization 
         if self.dr_friction_min > self.dr_friction_max:

@@ -3,6 +3,8 @@ env_id: "Walker2d-v5"
 
 # PPO Training Hyperparameters
 total_timesteps: 3000000
+seed: 42
+checkpoint_freq: 100000
 learning_rate: 0.0003
 n_steps: 2048
 batch_size: 64
