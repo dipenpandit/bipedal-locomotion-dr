@@ -103,7 +103,7 @@ def plot_training_progress(training_mode: Literal["ppo_dr", "ppo_nominal"],):
 
 
 # Visualize the evaluation results across different environments
-def plot_eval_matrix(results: dict):
+def plot_eval_matrix(results):
     """
     Compare the performance of the nominal and DR-trained policies across different environments.
     """
@@ -146,7 +146,7 @@ def plot_eval_matrix(results: dict):
     ax.grid(axis='y', linestyle='--', alpha=0.7)
     
     plt.tight_layout()
-    fig.savefig("assets/fig2_robustness_matrix.png", dpi=600)
+    fig.savefig("assets/fig2_robustness_matrix.png", dpi=300)
 
     plt.show()
     plt.close()
@@ -154,17 +154,17 @@ def plot_eval_matrix(results: dict):
 
 
 # Visualize the push probability ablation study results
-def plot_push_sweep(results: dict):
+def plot_push_sweep(results):
     """
     Visualize the results of the push probability ablation study.
     """
     logger.info("Visualizing push probability ablation study results...")
     probs = config.push_probs
-    nom_means = [results["nominal_push"][str(p)]["mean"] for p in probs]
-    nom_stds = [results["nominal_push"][str(p)]["std"] for p in probs]
+    nom_means = [results["nominal_push"][str(p)][0] for p in probs]
+    nom_stds = [results["nominal_push"][str(p)][1] for p in probs]
         
-    dr_means = [results["dr_push"][str(p)]["mean"] for p in probs]
-    dr_stds = [results["dr_push"][str(p)]["std"] for p in probs]
+    dr_means = [results["dr_push"][str(p)][0] for p in probs]
+    dr_stds = [results["dr_push"][str(p)][1] for p in probs]
         
     fig, ax = plt.subplots(figsize=(10, 6))
         
@@ -178,7 +178,7 @@ def plot_push_sweep(results: dict):
     ax.grid(True, linestyle='--', alpha=0.7)
         
     plt.tight_layout()
-    fig.savefig("assets/fig3_push_ablation.png", dpi=600)
+    fig.savefig("assets/fig3_push_ablation.png", dpi=300)
 
     plt.show()
     plt.close()
