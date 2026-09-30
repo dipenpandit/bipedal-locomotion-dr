@@ -1,14 +1,20 @@
-# Robust Bipedal Locomotion via Domain Randomization
+# Domain Randomization Study in Bipedal Locomotion 
 
 An empirical study on the limits and capabilities of Domain Randomization (DR) for closing the Sim-to-Real gap in bipedal reinforcement learning. 
 
 ## Overview
-This repository contains the code, configurations, and analysis for a rigorous empirical study evaluating Proximal Policy Optimization (PPO) on the MuJoCo `Walker2d-v5` environment. The project investigates whether training a policy on randomized physical parameters (friction and mass) improves its robustness to out-of-distribution physics and its ability to recover from external physical disturbances (pushes).
+This repository contains the code, configuration, and analysis for an empirical
+study of domain randomization in bipedal locomotion. The study trains Proximal
+Policy Optimization (PPO) agents in the MuJoCo `Walker2d-v5` environment and
+compares nominal training with training under randomized friction and torso
+mass. It evaluates learning performance, robustness to out-of-distribution
+physics, and recovery from external horizontal pushes to determine whether
+randomizing physical parameters improves generalization and dynamic stability.
 
 ## Key Findings
-1. **Parametric Robustness:** Domain Randomization successfully prevents catastrophic performance collapse. While a Nominal-trained agent's reward drops by ~70% under severe physics shifts, a DR-trained agent's reward drops by only ~37%.
-2. **The DR Penalty:** This robustness comes at a cost. The DR agent sacrifices ~22% of its peak reward in the nominal environment compared to the Nominal agent.
-3. **Limits of Passive DR:** Passive parameter randomization does **not** grant zero-shot push recovery. Both Nominal and DR agents exhibit nearly identical survival times when subjected to external horizontal forces, indicating that parametric robustness does not automatically translate to dynamic stability.
+1. **DR improves robustness:** Under severe changes to friction and mass, the Nominal agent's reward fell by about 70%, while the DR agent's reward fell by about 37%.
+2. **DR reduces nominal performance:** The DR agent achieved about 22% less peak reward than the Nominal agent in the standard environment.
+3. **DR does not improve push recovery:** Both agents had similar survival times when exposed to random horizontal pushes. Robustness to parameter changes did not automatically produce better recovery from external disturbances.
 
 ## Project Structure
 ```text

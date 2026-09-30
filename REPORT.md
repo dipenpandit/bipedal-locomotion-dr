@@ -39,4 +39,24 @@ This reveals a critical limitation of passive Domain Randomization: **optimizing
 My findings demonstrate that Domain Randomization is highly effective at preventing performance collapse under distributional shift, but it is not a silver bullet for sim-to-real transfer. While it solves the parametric overfitting problem, it fails to address dynamic disturbances. True robustness likely requires combining passive DR with active adversarial training or curriculum learning to explicitly teach disturbance rejection.
 
 ## 5. Conclusion
-Through this empirical study, I demonstrated the distinct boundaries of Domain Randomization in bipedal locomotion. 
+This study shows that Domain Randomization improves robustness to changes in
+simulated friction and mass. The DR-trained agent performed more consistently
+than the Nominal agent when tested under severe parameter changes. However,
+this improvement came with lower peak performance in the nominal environment.
+
+The push-recovery results show that parameter randomization alone does not
+teach reliable recovery from large external disturbances. Both agents had
+similar survival times under the tested push conditions. In short, DR helps
+with physics variation, but it does not replace explicit disturbance training.
+
+## 6. Limitations and Future Work
+This study used one MuJoCo environment, one PPO configuration, and a limited
+set of randomized parameters. The evaluation also focused on aggregate reward
+and survival length, which do not fully describe gait quality or recovery
+behavior. Results may also vary across random seeds.
+
+Future work should evaluate multiple seeds and additional locomotion tasks. It
+should also compare passive DR with active disturbance training, adversarial
+pushes, and curriculum learning. These methods could directly teach the policy
+to reject external disturbances while retaining the parametric robustness
+provided by Domain Randomization.
